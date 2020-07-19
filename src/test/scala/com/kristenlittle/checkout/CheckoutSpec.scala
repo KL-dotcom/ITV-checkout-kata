@@ -41,4 +41,9 @@ val underTest = new Checkout()
       StockKeepingUnit("c", 20, None), StockKeepingUnit("d", 15, None))) should equal(210)
   }
 
+  it should "return with 0 for empty lists" in {
+    underTest.CheckoutCalc(List(), List()) should equal(0)
+  }
+
+
 }

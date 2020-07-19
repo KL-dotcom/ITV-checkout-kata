@@ -4,7 +4,7 @@ class Checkout {
 
   def CheckoutCalc(items:List[String], sku:List[StockKeepingUnit]) : BigDecimal = {
 
-    def getPrice(itemDetails: StockKeepingUnit) : BigDecimal = {
+    def calculateTotalForItem(itemDetails: StockKeepingUnit) : BigDecimal = {
       val itemAmount = items.count(_== itemDetails.item)
       itemDetails.offer.map{
         offer => ((itemAmount / offer.offerQuantity).floor * offer.offerPrice) + (itemAmount % (offer.offerQuantity) * itemDetails.price)
@@ -12,7 +12,7 @@ class Checkout {
 
     }
 
-    sku.map(elem => getPrice(elem)).sum
+    sku.map(elem => calculateTotalForItem(elem)).sum
   }
 
 }
